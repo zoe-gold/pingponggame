@@ -9,11 +9,34 @@ startBtn.onclick = function (){
     startBtn.style.display ="none";
     paddle1= new Paddle (10)
     paddle2 = new Paddle (970)
-
-    ball=new Ball ()
+    ball= new Ball ()
+    
     window.requestAnimationFrame(draw)
 }
 
+// Score counter
+
+    
+// PADDLE
+function Paddle(x) {
+
+
+    this.color = "red";
+    this.x = x;
+    this.y = canvas.height/2 - 60;
+    this.width = 20;
+    this.height = 120;
+
+}
+
+Paddle.prototype.drawPaddle = function () {
+
+// change here if you want it to be a different shape
+
+ctx.fillStyle = this.color;
+ctx.fillRect(this.x, this.y, this.width, this.height)
+
+}
 
 
 
@@ -42,7 +65,7 @@ Ball.prototype.checkBorder = function () {
     this.y + this.dy < ball.ballRadius) {
         this.dy = -this.dy
     }
-
+    
 }
 
 Ball.prototype.checkLeftAndRight = function() {
@@ -61,27 +84,7 @@ Ball.prototype.checkLeftAndRight = function() {
 }
 
 
-// PADDLE
-function Paddle(x) {
 
-// function name does not matter
-
-    this.color = "red";
-    this.x = x;
-    this.y = canvas.height/2 - 60;
-    this.width = 20;
-    this.height = 120;
-
-}
-
-Paddle.prototype.drawPaddle = function () {
-
-// change here if you want it to be a different shape
-
-ctx.fillStyle = this.color;
-ctx.fillRect(this.x, this.y, this.width, this.height)
-
-}
 
 Paddle.prototype.hitPaddleTwo = function () {
 
@@ -124,13 +127,14 @@ ctx.clearRect(0,0,canvas.width,canvas.height)
 
 paddle1.drawPaddle()
 paddle2.drawPaddle()
+
 ball.drawBall()
 ball.x += ball.dx;
 ball.y += ball.dy
 ball.checkBorder()
 
-
 if (ball.checkLeftAndRight() === true) {
+    
     restartBtn.style.display = "inline"
 }
 
@@ -144,22 +148,36 @@ window.requestAnimationFrame(draw)
 }
 
 
-function keyDownHandler (event) {
+function keyDownHandler1 (event) {
 // https://keycode.info/
 
-    if(event.key === "z") {
+    if(event.key === "z"
+    && paddle1.y >= 0)
+
+     {
     paddle1.y -= 50
     }
-    else if (event.key === "s") {
+    else if (event.key === "s"
+    && paddle1.y <= canvas.height - paddle1.height)
+    
+    {
         paddle1.y += 50
     }
-    if(event.key === "ArrowUp") {
+    if(event.key === "ArrowUp"
+    
+    && paddle2.y >= 0)
+    
+    {
         paddle2.y -= 50
         }
-    else if (event.key === "ArrowDown") {
+    else if (event.key === "ArrowDown"
+    && paddle2.y <= canvas.height - paddle2.height)
+    
+    
+    {
             paddle2.y += 50
         }
 
 }
 
-document.onkeydown = keyDownHandler 
+document.onkeydown = keyDownHandler1 
