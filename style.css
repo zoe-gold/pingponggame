@@ -11,10 +11,10 @@ width: 150px;
 #restartBtn {
     display: none;
     border: 5px blue solid;
-    font-size: 40px;
+    font-size: 30px;
     position: absolute;
     left: 30%;
     top: 50%;
-    width: 150px;
+    width: 200px;
     
     }
