@@ -135,7 +135,7 @@ ball.checkBorder()
 
 if (ball.checkLeftAndRight() === true) {
     
-    restartBtn.style.display = "none"
+    restartBtn.style.display = "inline"
 }
 
 paddle2.hitPaddleTwo()
